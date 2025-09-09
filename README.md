@@ -49,6 +49,12 @@ The core of the project is a Neural ODE model. The model's dynamics are governed
 
 The model is trained using the PyTorch Lightning framework. The `Learner` module defines the training loop, which calculates the Mean Absolute Error (MAE) between the predicted output and the true output at the last time point of the simulation. The Adam optimizer is used for updating the model's parameters.
 
-## Visualization
-
-The notebook includes functions to visualize the loaded data and to compare the true output with the model's predictions after training. This helps in understanding the data and evaluating the model's performance visually.
+## Data Analysis Key Findings
+- The notebook utilizes torchdiffeq and torchdyn for implementing Neural Ordinary Differential Equations (NODEs).
+- Time-series data is loaded from a text file (000075.txt), parsed, and preprocessed into PyTorch tensors for input (u) and output (y).
+- Visualization functions (visualize and visualizePred) are defined to plot the input, true output, and predicted output over time.
+- Data is prepared for training using TensorDataset and DataLoader, with the entire dataset treated as a single batch.
+- A custom PyTorch Lightning Learner module is implemented to manage the training process, including defining the forward pass, calculating the Mean Absolute Error (MAE) loss at the last time point, and configuring the Adam optimizer.
+- The Neural ODE model's vector field is defined as a sequential neural network, including a DataControl layer and linear layers with a Tanh activation.
+- The NeuralODE is configured with the 'tsit5' solver and 'interpolated_adjoint' sensitivity method.
+- The training process, initiated with a PyTorch Lightning Trainer, is expected to fail due to a RuntimeError related to shape mismatch ([2000, 1] vs [2000, 9]) during the ODE integration, likely indicating an issue with handling the input u or initial state dimensions within the vector field or solver.
