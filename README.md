@@ -35,6 +35,8 @@ The notebook is organized into the following sections:
 
 ## Data
 
+Artificial data can be generated to simulate the date used in this notebook by running the python script ```bash data_generator ``` found in the Data Generation module.
+
 The data is loaded from a `.txt` file. It consists of two main parts:
 -   `rho` (input, represented as `u` in the code): A time series representing the input signal.
 -   `NandC` (output, represented as `y` in the code): A time series with multiple dimensions representing the system's response.
